@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏</title>
+</head>
+
+<body>
+    <script>
+        /*
+        设计思路：
+        1、先将火柴分成三组，设置玩家1/2需要获取的火柴，并不能少于0或大于当前行的数目，
+        2、某行火柴为0时删除该数组元素
+        3、火柴数量大于1时，玩家每一轮相互切换取出火柴
+        4、当某玩家取出最后一根火柴即为输家
+        */
+        var arr = [3, 5, 7];//火柴分布
+        var player = 1; //玩家编号：1、2
+        while (true) {
+            // 输入框
+            var n = parseInt(prompt("请输入" + player + "号玩家拿火柴的数目（1-" + arr[0] + "）", ""), 10);
+            if (n < 1 || n > arr[0]) {
+                alert("火柴的数目错误，请重新输入！");
+                continue;
+            }
+            arr[0] -= n;
+            if (arr[0] == 0)
+                // 某行火柴取光删除数组元素
+                arr.shift();
+                alert("剩余火柴的数目：" + arr);
+            if (arr.length > 0) {
+                // 切换玩家
+                player = player == 1 ? 2 : 1;
+            } else {
+                break;
+            }
+        }
+        // 打印输家
+        alert(player + "号玩家输了！");
+
+    </script>
+</body>
+
+</html>
